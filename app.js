@@ -31,3 +31,5 @@ if(form){
     window.open(wa(messages[route]+suffix),'_blank','noopener');
   });
 }
+
+import('/service-form.js').catch(()=>{});
