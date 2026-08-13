@@ -1,3 +1,4 @@
+import './service-form.js';
 import { loadSettings } from './neon-client.js';
 
 const FALLBACK_PHONE='447915374776';
