@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://escribeme.com.mx/sitemap.xml
