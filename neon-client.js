@@ -1,3 +1,4 @@
+import './parroquia.js';
 import { createClient } from 'https://esm.sh/@neondatabase/neon-js@0.6.2-beta?bundle';
 
 export const AUTH_URL = 'https://ep-solitary-recipe-afmlifru.neonauth.c-2.us-west-2.aws.neon.tech/neondb/auth';
