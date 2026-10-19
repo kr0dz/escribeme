@@ -1,6 +1,5 @@
 import { loadSettings } from './neon-client.js';
 
-const FALLBACK_PHONE='447915374776';
 const fallbackMessages={
  tech:'¡Hola! 👋 Necesito ayuda con un servicio de tecnología en San Miguel de Allende. ¿Me pueden ayudar? 💻\n\n[TECH]',
  art:'¡Hola! 👋 Estoy buscando información relacionada con arte en San Miguel de Allende. ¿Me pueden ayudar? 🎨\n\n[ART]',
@@ -24,20 +23,12 @@ function applySettings(){
   });
 }
 function initWhatsApp(){
-  const phone=settings.whatsapp_phone || FALLBACK_PHONE;
-  const messages={...fallbackMessages,...(settings.whatsapp_messages||{})};
-  const wa=t=>`https://wa.me/${phone}?text=${encodeURIComponent(t)}`;
-  document.querySelectorAll('[data-direct]').forEach(a=>a.href=wa(messages[a.dataset.direct]||messages.tech));
-  const form=document.getElementById('leadForm');
-  if(!form) return;
-  const preview=document.getElementById('messagePreview');
-  const update=()=>{const r=form.querySelector('input[name="route"]:checked')?.value||'tech'; if(preview) preview.textContent=`${labels[r]} · San Miguel de Allende`;};
-  form.querySelectorAll('input[name="route"]').forEach(r=>r.addEventListener('change',update)); update();
-  form.addEventListener('submit',e=>{
-    e.preventDefault(); const r=form.querySelector('input[name="route"]:checked')?.value||'tech';
-    const z=document.getElementById('zone')?.value.trim(); const d=document.getElementById('details')?.value.trim();
-    let suffix=''; if(z) suffix+=`\n\nZona: ${z}`; if(d) suffix+=`\n\nDetalles:\n${d}`;
-    window.open(wa((messages[r]||messages.tech)+suffix),'_blank','noopener');
-  });
+  // Old WhatsApp Business number retired. Keep WhatsApp actions unavailable
+  // until a replacement number or another verified contact channel is provided.
+  const style=document.createElement('style');
+  style.textContent='[data-direct], #leadForm, .service-request, a[href*="wa.me/"]{display:none!important}';
+  document.head.appendChild(style);
+  document.querySelectorAll('[data-direct]').forEach(a=>a.remove());
+  document.getElementById('leadForm')?.remove();
 }
 boot();
